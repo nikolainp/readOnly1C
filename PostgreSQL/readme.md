@@ -1,4 +1,4 @@
-### Как обмануть 1С или реплика информационной базы
+### Реплика информационной базы 1С:Предприятие в PostgreSQL
 -------
 
 #### Постановка задачи
@@ -45,7 +45,6 @@
     CREATE SCHEMA v8system;
     ```
 1. Отображаем системные таблицы 1С:Предприятие в схему v8system
-   <!--select 'INSERT INTO "' || tablename || '" SELECT * FROM "v8system.' || tablename || '";' from pg_tables where not tableowner = 'postgres';-->
    ```sql
     IMPORT FOREIGN SCHEMA public LIMIT TO (schemastorage, dbschema, ibversion, config, configsave, params, files, depotfiles, configcas, configcassave, _yearoffset, v8users, _odatasettings, _usersworkhistory, _ckindsopt, _extensionsrestruct, _extensionsrestructngs, _extensionsinfo, _extensionsinfongs, _accopt, _dbcopiessettings, _chrcopt, _dbcopies, _dbcopiestrlogs, _dbcopiestrtables, _dbcopiesupdates, _dbcopiestablesstates, _dbcopiesinitiallast, _dbcopiestrchanges, _dbcopiestrchobj, _systemsettings, _commonsettings, _repsettings, _repvarsettings, _datahistoryversions, _frmdtsettings, _dynlistsettings, _datahistoryqueue0, _datahistorylatestversions, _datahistorymetadata, _datahistorysettings) FROM SERVER standby_server INTO v8system;
     ```
