@@ -53,12 +53,8 @@
    IMPORT FOREIGN SCHEMA public EXCEPT (schemastorage, dbschema, ibversion, config, configsave, params, files, depotfiles, configcas, configcassave, _yearoffset, v8users, _odatasettings, _usersworkhistory, _ckindsopt, _extensionsrestruct, _extensionsrestructngs, _extensionsinfo, _extensionsinfongs, _accopt, _dbcopiessettings, _chrcopt, _dbcopies, _dbcopiestrlogs, _dbcopiestrtables, _dbcopiesupdates, _dbcopiestablesstates, _dbcopiesinitiallast, _dbcopiestrchanges, _dbcopiestrchobj, _systemsettings, _commonsettings, _repsettings, _repvarsettings, _datahistoryversions, _frmdtsettings, _dynlistsettings, _datahistoryqueue0, _datahistorylatestversions, _datahistorymetadata, _datahistorysettings) FROM SERVER standby_server INTO public;
    ```
 3. Удаляем текущие данные из системных таблиц 1С:Предприятие промежуточной базы данных и заполняем их данными из системных таблиц 1С:Предприятие в реплике
-
-<!-- select 'INSERT INTO "' || tablename || '" SELECT * FROM "v8system.' || tablename || '";' from pg_tables where not tableowner = 'postgres';
- -->
-
    ```sql
-    TRUNCATE schemastorage, dbschema, ibversion, config, configsave, params, files, depotfiles, configcas, configcassave, _yearoffset, v8users, _odatasettings, _usersworkhistory, _ckindsopt, _extensionsrestruct, _extensionsrestructngs, _extensionsinfo, _extensionsinfongs, _accopt, _dbcopiessettings, _chrcopt, _dbcopies, _dbcopiestrlogs, _dbcopiestrtables, _dbcopiesupdates, _dbcopiestablesstates, _dbcopiesinitiallast, _dbcopiestrchanges, _dbcopiestrchobj, _systemsettings, _commonsettings, _repsettings, _repvarsettings, _datahistoryversions, _frmdtsettings, _dynlistsettings, _datahistoryqueue0, _datahistorylatestversions, _datahistorymetadata, _datahistorysettings;
+   TRUNCATE schemastorage, dbschema, ibversion, config, configsave, params, files, depotfiles, configcas, configcassave, _yearoffset, v8users, _odatasettings, _usersworkhistory, _ckindsopt, _extensionsrestruct, _extensionsrestructngs, _extensionsinfo, _extensionsinfongs, _accopt, _dbcopiessettings, _chrcopt, _dbcopies, _dbcopiestrlogs, _dbcopiestrtables, _dbcopiesupdates, _dbcopiestablesstates, _dbcopiesinitiallast, _dbcopiestrchanges, _dbcopiestrchobj, _systemsettings, _commonsettings, _repsettings, _repvarsettings, _datahistoryversions, _frmdtsettings, _dynlistsettings, _datahistoryqueue0, _datahistorylatestversions, _datahistorymetadata, _datahistorysettings;
  
     INSERT INTO ibversion SELECT * FROM v8system.ibversion;
     INSERT INTO config SELECT * FROM v8system.config;
@@ -101,7 +97,7 @@
     INSERT INTO _datahistorylatestversions SELECT * FROM v8system._datahistorylatestversions;
     INSERT INTO _datahistorymetadata SELECT * FROM v8system._datahistorymetadata;
     INSERT INTO _datahistorysettings SELECT * FROM v8system._datahistorysettings;
-    ```
+   ```
  
 Всё. Можно открывать 1С:Предприятие и заходить в базу.
 Решение проблем с регламентными заданиями и прочим, что может пытаться писать в информационную базу, остаётся в качестве домашнего задания.
