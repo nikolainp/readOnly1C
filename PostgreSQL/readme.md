@@ -37,8 +37,8 @@
     ```
 1. Создаём отображение для пользователей промежуточного сервера
    ```sql
-    CREATE USER MAPPING FOR postgres SERVER dbone OPTIONS (user 'usr1cv8', password 'pas1cv8');
-    CREATE USER MAPPING FOR usr1cv8 SERVER dbone OPTIONS (user 'usr1cv8', password 'pas1cv8');
+    CREATE USER MAPPING FOR postgres SERVER standby_server OPTIONS (user 'usr1cv8', password 'pas1cv8');
+    CREATE USER MAPPING FOR usr1cv8 SERVER standby_server OPTIONS (user 'usr1cv8', password 'pas1cv8');
     ```
 1. Создаём схему, в которую будем отображать системные таблицы 1С:Предприятие
    ```sql
