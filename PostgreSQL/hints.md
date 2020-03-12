@@ -1,5 +1,4 @@
 ### Создание запросов
----------------------
 
 #### Запросы на импорт схемы
 
@@ -22,6 +21,21 @@ select 'TRUNCATE ' || string_agg(tablename, ', ') || ';' from pg_tables where no
 
 ```sql
 select 'INSERT INTO ' || tablename || ' SELECT * FROM v8system.' || tablename || ';' from pg_tables where not tableowner = 'postgres' \gexec
+```
+
+----------------
+
+### Обслуживание
+
+
+#### Запрос на список всех внешних таблиц
+```sql
+select table_name from information_schema.tables where table_type = 'FOREIGN'; 
+```
+
+#### Запрос на удаление всех внешних таблиц
+```sql
+select 'DROP FOREIGN TABLE ' || string_agg(table_name, ', ') || ';'  from information_schema.tables where table_type = 'FOREIGN' \gexec
 ```
 
 
