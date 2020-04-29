@@ -30,7 +30,7 @@ select 'INSERT INTO ' || tablename || ' SELECT * FROM v8system.' || tablename ||
 
 #### Запрос на список всех внешних таблиц
 ```sql
-select table_name from information_schema.tables where table_type = 'FOREIGN'; 
+select table_schema, table_name from information_schema.tables where table_type = 'FOREIGN'; 
 ```
 
 #### Запрос на удаление всех внешних таблиц
